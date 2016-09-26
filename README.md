@@ -1,5 +1,5 @@
 # Simple-Kafka-Golang
-This repository created to show the example for using [Kafa](http://kafka.apache.org/) with ([Golang](https://golang.org/)) as Simple Producer and Consumer
+This repository created to show the example for using [Kafka](http://kafka.apache.org/) with ([Golang](https://golang.org/)) as Simple Producer and Consumer
 
 # Running Kafka
 Download the latest Kafka version from this link [Kafka Download Page](http://kafka.apache.org/downloads.html) and choose the binary downloads.

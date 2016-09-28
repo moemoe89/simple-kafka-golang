@@ -1,4 +1,7 @@
 # Simple-Kafka-Golang
+
+![demo](simple-kafka-golang-demo.gif)
+
 This repository created to show the example for using [Kafka](http://kafka.apache.org/) with ([Golang](https://golang.org/)) as Simple Producer and Consumer
 
 # Running Kafka

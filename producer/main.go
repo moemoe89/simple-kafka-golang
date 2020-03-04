@@ -2,23 +2,24 @@ package main
 
 import (
 	"encoding/json"
-	"github.com/gin-gonic/gin"
-	"github.com/Shopify/sarama"
 	"net/http"
 	"strconv"
 	"time"
+
+	"github.com/gin-gonic/gin"
+	"github.com/Shopify/sarama"
 )
 
 type Request struct {
-	ID int `json:"id"`
-	Name  string `json:"name"`
+	ID   int    `json:"id"`
+	Name string `json:"name"`
 }
 
 var request Request
 
 const (
-	PRODUCER_URL string = "localhost:9092"
-	KAFKA_TOPIC string = "simple-kafka-golang"
+	PRODUCER_URL = "localhost:9092"
+	KAFKA_TOPIC  = "simple-kafka-golang"
 )
 
 func message(c *gin.Context) {

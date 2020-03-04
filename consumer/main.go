@@ -2,19 +2,20 @@ package main
 
 import (
 	"encoding/json"
-	"github.com/Shopify/sarama"
 	"log"
 	"strings"
+
+	"github.com/Shopify/sarama"
 )
 
 type User struct {
-	ID int `json:"id"`
-	Name  string `json:"name"`
+	ID   int    `json:"id"`
+	Name string `json:"name"`
 }
 
 const (
-	PRODUCER_URL string = "localhost:9092"
-	KAFKA_TOPIC string = "simple-kafka-golang"
+	PRODUCER_URL = "localhost:9092"
+	KAFKA_TOPIC  = "simple-kafka-golang"
 )
 
 func main(){

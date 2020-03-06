@@ -1,0 +1,6 @@
+{
+  "port": "8784",
+  "kafka": {
+    "addr": "localhost:9092"
+  }
+}

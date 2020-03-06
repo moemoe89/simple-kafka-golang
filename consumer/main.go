@@ -1,9 +1,16 @@
+//
+//  Practicing Kafka
+//
+//  Copyright © 2016. All rights reserved.
+//
+
 package main
 
 import (
+	conf "github.com/moemoe89/simple-kafka-golang/consumer/config"
+
 	"encoding/json"
 	"log"
-	"strings"
 
 	"github.com/Shopify/sarama"
 )
@@ -14,19 +21,11 @@ type User struct {
 }
 
 const (
-	PRODUCER_URL = "localhost:9092"
-	KAFKA_TOPIC  = "simple-kafka-golang"
+	KAFKA_TOPIC = "simple-kafka-golang"
 )
 
 func main(){
-
-	config := sarama.NewConfig()
-	config.Producer.Partitioner = sarama.NewManualPartitioner
-	config.Consumer.Return.Errors = true
-
-	producerUrl := strings.Split(PRODUCER_URL, ",")
-
-	consumer, err := sarama.NewConsumer(producerUrl, config)
+	consumer, err := conf.InitKafkaConsumer()
 	if err != nil {
 		panic(err)
 	}

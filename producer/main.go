@@ -1,6 +1,14 @@
+//
+//  Practicing Kafka
+//
+//  Copyright © 2016. All rights reserved.
+//
+
 package main
 
 import (
+	conf "github.com/moemoe89/simple-kafka-golang/producer/config"
+
 	"encoding/json"
 	"net/http"
 	"strconv"
@@ -18,26 +26,19 @@ type Request struct {
 var request Request
 
 const (
-	PRODUCER_URL = "localhost:9092"
-	KAFKA_TOPIC  = "simple-kafka-golang"
+	KAFKA_TOPIC = "simple-kafka-golang"
 )
 
 func message(c *gin.Context) {
-
 	c.Bind(&request)
 	reqMarshal,err := json.Marshal(request)
-
 	if err != nil {
 		panic(err)
 	}
 
 	reqString := string(reqMarshal)
 
-	config := sarama.NewConfig()
-	config.Producer.Retry.Max = 5
-	config.Producer.RequiredAcks = sarama.WaitForAll
-	brokers := []string{PRODUCER_URL}
-	producer, err := sarama.NewAsyncProducer(brokers, config)
+	producer, err := conf.InitKafkaProducer()
 	if err != nil {
 		panic(err)
 	}
@@ -59,19 +60,16 @@ func message(c *gin.Context) {
 	producer.Input() <- msg
 
 	resp := gin.H{
-		"status": http.StatusOK,
+		"status":  http.StatusOK,
 		"message": "Message has been sent.",
-		"data": reqString,
+		"data":    reqString,
 	}
 
 	c.IndentedJSON(http.StatusOK, resp)
-
 }
 
 func main() {
-
 	router := gin.Default()
 	router.POST("/",message)
-	router.Run(":3000")
-
+	router.Run(":"+conf.Configuration.Port)
 }
